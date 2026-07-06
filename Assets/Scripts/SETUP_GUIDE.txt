@@ -1,0 +1,185 @@
+================================================================
+  VR LOGGING SYSTEM — UNITY SETUP GUIDE
+  Project: VR Data Collection for Exposure Therapy
+  Hardware: Meta Quest 3 | Unity 2022.3 LTS | Meta XR SDK
+================================================================
+
+FOLDER STRUCTURE
+----------------
+Assets/
+  Scripts/
+    Logging/
+      VRLogger.cs          ← The central manager (Singleton)
+      LogEvent.cs          ← Data model for each event
+      SessionController.cs ← Start/stop/export sessions
+    Tracking/
+      GazeTracker.cs       ← What the player looks at
+      MovementTracker.cs   ← Where the player moves
+      GrabTracker.cs       ← What the player grabs
+
+
+================================================================
+STEP 1 — Copy Scripts into Unity
+================================================================
+1. In your Unity project, open the Project window
+2. Inside Assets/, create folders:  Scripts/Logging  and  Scripts/Tracking
+3. Drag all .cs files into their matching folders
+4. Wait for Unity to compile (spinning icon in bottom right)
+   Fix any errors before continuing
+
+
+================================================================
+STEP 2 — Set Up the Scene
+================================================================
+You need these GameObjects in your scene hierarchy:
+
+  [VRLogger]            ← empty GameObject with VRLogger.cs
+  [SessionController]   ← empty GameObject with SessionController.cs
+  [MovementTracker]     ← empty GameObject with MovementTracker.cs
+  [OVRCameraRig]        ← from Meta XR SDK prefab (already in scene)
+  [YourObjects]         ← bottles, glasses, etc. with GrabTracker.cs
+
+HOW TO CREATE AN EMPTY GAMEOBJECT:
+  Hierarchy window → right-click → Create Empty → rename it
+
+
+================================================================
+STEP 3 — Set Up VRLogger
+================================================================
+1. Select the [VRLogger] GameObject
+2. In the Inspector, click "Add Component" → search "VRLogger"
+3. Settings to configure:
+   - Session ID: leave empty (auto-generates a unique ID each run)
+   - Export Folder: "VRLogs" (leave as default)
+   - Export JSON: ✓ checked
+   - Export CSV:  ✓ checked
+   - Auto Export On Quit: ✓ checked
+
+
+================================================================
+STEP 4 — Set Up GazeTracker
+================================================================
+1. In the Hierarchy, find: OVRCameraRig > OVRCameraRig > TrackingSpace > CenterEyeAnchor
+2. Select CenterEyeAnchor
+3. Click "Add Component" → search "GazeTracker"
+4. Settings:
+   - Gaze Distance: 10  (meters, how far the ray reaches)
+   - Check Interval: 0.05  (check 20 times per second)
+   - Show Debug Ray: ✓  (shows cyan ray in Scene view — turn off for final build)
+
+
+================================================================
+STEP 5 — Set Up MovementTracker
+================================================================
+1. Select the [MovementTracker] GameObject
+2. Add Component → "MovementTracker"
+3. In the Inspector, drag in these transforms:
+   - Camera Transform    → OVRCameraRig/TrackingSpace/CenterEyeAnchor
+   - Left Hand Transform → OVRCameraRig/TrackingSpace/LeftHandAnchor
+   - Right Hand Transform→ OVRCameraRig/TrackingSpace/RightHandAnchor
+4. Settings:
+   - Log Interval: 0.1  (10 times per second)
+   - Minimum Move Delta: 0.01  (ignore tiny wobble)
+
+
+================================================================
+STEP 6 — Set Up GrabTracker on Each Object
+================================================================
+For EACH object the patient can interact with (bottles, glasses, etc.):
+
+1. Select the object in the Hierarchy
+2. Make sure it has these components (add if missing):
+   - Rigidbody        (Add Component → Physics → Rigidbody)
+   - Collider         (Add Component → Physics → Box Collider or similar)
+   - OVRGrabbable     (Add Component → search "OVRGrabbable")
+3. Add Component → "GrabTracker"
+4. Settings:
+   - Object Label:      "AlcoholicBottle"  (or whatever the object is)
+   - Is Trigger Object: ✓ checked  (marks it as a therapy trigger)
+
+REPEAT for every interactable object in the scene.
+
+
+================================================================
+STEP 7 — Set Up SessionController
+================================================================
+1. Select the [SessionController] GameObject
+2. Add Component → "SessionController"
+3. Default buttons:
+   - Right A button (One)   → Exports/ends session
+   - Left X button (Three)  → Starts new session
+4. You can also call ExportAndEnd() from a UI button if you build one
+
+
+================================================================
+STEP 8 — Test in Editor (before building to Quest)
+================================================================
+1. Press PLAY in Unity Editor
+2. Check the Console window — you should see:
+   [VRLogger] Session started: Session_2026-05-18_143022
+3. Move around / look at objects / grab them in the scene
+4. In Console you'll see events like:
+   [VRLogger] 2.34s | GazeEnter | AlcoholicBottle
+   [VRLogger] 5.12s | Grab | AlcoholicBottle
+5. Press STOP — autoExportOnQuit triggers
+6. Find your files at:
+   Windows: C:\Users\YOU\AppData\LocalLow\[CompanyName]\[AppName]\VRLogs\
+   Mac:     ~/Library/Application Support/[CompanyName]/[AppName]/VRLogs/
+
+
+================================================================
+STEP 9 — Build to Meta Quest 3
+================================================================
+1. File → Build Settings → Android → Build and Run
+2. Plug in Quest 3 via USB
+3. Accept the "Allow USB Debugging" prompt in the headset
+4. The app installs and launches automatically
+5. After your test session, press the A button on the right controller
+   to export data
+6. To get the files OFF the headset:
+   - Use Android File Transfer (Mac) or Windows Explorer (PC)
+   - Navigate to:  Android/data/[your app ID]/files/VRLogs/
+   - Copy the Session_XXXX folder to your PC
+
+
+================================================================
+WHERE YOUR DATA GOES
+================================================================
+After export, each session creates a folder like:
+  VRLogs/
+    Session_2026-05-18_143022/
+      Session_2026-05-18_143022.json   ← structured, all metadata
+      Session_2026-05-18_143022.csv    ← open in Excel or Python
+
+CSV columns:
+  eventType | objectID | timestamp | posX | posY | posZ | duration | extra
+
+Example rows:
+  GazeEnter,AlcoholicBottle,3.420,0.123,1.600,2.340,0.000,
+  GazeExit,AlcoholicBottle,6.780,0.145,1.598,2.310,3.360,gazeDuration=3.360s
+  Grab,AlcoholicBottle,8.100,0.130,1.601,2.320,0.000,grabCount=1,isTrigger=True
+  Release,AlcoholicBottle,11.500,0.200,1.595,2.410,3.400,holdDuration=3.400s
+
+
+================================================================
+QUICK TROUBLESHOOTING
+================================================================
+"VRLogger not found" error
+  → Make sure the VRLogger GameObject is in the scene before any tracker runs
+  → Check the script is attached correctly in the Inspector
+
+No files created after session
+  → Check Console for "[VRLogger] Data saved to: ..." message
+  → Check Application.persistentDataPath in Console with:
+     Debug.Log(Application.persistentDataPath);
+
+GrabTracker won't compile
+  → You need Meta XR SDK imported (OVRGrabbable comes from it)
+  → Window → Package Manager → check Meta XR SDK is installed
+
+GazeTracker not detecting objects
+  → Make sure the object has a Collider component
+  → Check the "Gaze Layer" mask includes the object's layer
+  → Enable "Show Debug Ray" and look at the Scene view while playing
+
+================================================================
