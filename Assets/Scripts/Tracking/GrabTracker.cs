@@ -7,7 +7,7 @@
 //  HOW TO USE:
 //    1. Select a grabbable object in your scene (e.g. "AlcoholicBottle")
 //    2. Make sure it has:
-//         - An OVRGrabbable component (from Meta XR SDK)
+//         - A Grabbable component (from the Oculus Interaction SDK)
 //         - A Rigidbody component
 //         - A Collider component
 //    3. Attach THIS script to the same object
@@ -17,7 +17,7 @@
 using UnityEngine;
 using Oculus.Interaction;
 
-[RequireComponent(typeof(GrabInteractable))]
+[RequireComponent(typeof(Grabbable))]
 public class GrabTracker : MonoBehaviour
 {
     [Header("Object Identity")]
@@ -27,7 +27,7 @@ public class GrabTracker : MonoBehaviour
     [Tooltip("Is this object considered a therapy trigger?")]
     public bool isTriggerObject = true;
 
-    private GrabInteractable _grabInteractable;
+    private Grabbable _grabbable;
 
     private float _grabStartTime;
     private int _grabCount;
@@ -36,7 +36,7 @@ public class GrabTracker : MonoBehaviour
 
     private void Awake()
     {
-        _grabInteractable = GetComponent<GrabInteractable>();
+        _grabbable = GetComponent<Grabbable>();
 
         if (string.IsNullOrEmpty(objectLabel))
             objectLabel = gameObject.name;
@@ -47,12 +47,12 @@ public class GrabTracker : MonoBehaviour
 
     private void OnEnable()
     {
-        _grabInteractable.WhenPointerEventRaised += HandlePointerEvent;
+        _grabbable.WhenPointerEventRaised += HandlePointerEvent;
     }
 
     private void OnDisable()
     {
-        _grabInteractable.WhenPointerEventRaised -= HandlePointerEvent;
+        _grabbable.WhenPointerEventRaised -= HandlePointerEvent;
     }
 
     private void HandlePointerEvent(PointerEvent evt)
