@@ -646,6 +646,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5801245061754409418, guid: 0a7d2469f24041c4284c66706f84c45e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801245061754409418, guid: 0a7d2469f24041c4284c66706f84c45e, type: 3}
       propertyPath: _playerEyes
       value: 
       objectReference: {fileID: 391555818}
@@ -653,6 +657,10 @@ PrefabInstance:
       propertyPath: _playerOrigin
       value: 
       objectReference: {fileID: 685210932}
+    - target: {fileID: 5801245061754409418, guid: 0a7d2469f24041c4284c66706f84c45e, type: 3}
+      propertyPath: _autoUpdateHeight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6267690530596161800, guid: 0a7d2469f24041c4284c66706f84c45e, type: 3}
       propertyPath: _ovrCameraRig
       value: 
@@ -881,6 +889,33 @@ Transform:
   - {fileID: 539078450}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &715939319 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2416044424513481199, guid: 9aa57e50e18d174469da477e32f78749, type: 3}
+  m_PrefabInstance: {fileID: 1210960126}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &715939321
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715939319}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1001 &777307648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1537,6 +1572,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1205507011}
+  - component: {fileID: 1205507012}
   m_Layer: 0
   m_Name: SessionController
   m_TagString: Untagged
@@ -1559,6 +1595,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1205507012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205507010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13866f67339c99d42bfa89ccfaa6b10e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SessionController
+  exportButton: 1
+  newSessionButton: 4
+  exportOnDestroy: 1
+  showNotifications: 1
+  notificationDuration: 2
 --- !u!1001 &1210960126
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1622,6 +1675,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8762986142836246237, guid: 9aa57e50e18d174469da477e32f78749, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1501541327}
+    - targetCorrespondingSourceObject: {fileID: 2416044424513481199, guid: 9aa57e50e18d174469da477e32f78749, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 715939321}
     - targetCorrespondingSourceObject: {fileID: 5241215271433471960, guid: 9aa57e50e18d174469da477e32f78749, type: 3}
       insertIndex: -1
       addedObject: {fileID: 802843037}

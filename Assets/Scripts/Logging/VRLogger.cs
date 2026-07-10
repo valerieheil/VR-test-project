@@ -121,9 +121,8 @@ public class VRLogger : MonoBehaviour
        _sessionStart = Time.time;
        _isRunning    = true;
 
-       // Auto-generate a session ID if not set: "Session_2026-05-18_143022"
-       if (string.IsNullOrEmpty(sessionID))
-           sessionID = "Session_" + DateTime.Now.ToString("yyyy-MM-dd_HHmmss");
+       // Always generate a new session ID for each new session
+       sessionID = "Session_" + DateTime.Now.ToString("yyyy-MM-dd_HHmmss");
 
        Debug.Log($"[VRLogger] Session started: {sessionID}");
         // Helpful debug output showing where files will be written on device
