@@ -109,7 +109,7 @@ public class VRLogger : MonoBehaviour
        _eventBuffer.Add(evt);
 
        // Optional: print to Unity console while testing
-       Debug.Log($"[VRLogger] {evt.timestamp:F2}s | {evt.eventType} | {evt.objectID}");
+      // Debug.Log($"[VRLogger] {evt.timestamp:F2}s | {evt.eventType} | {evt.objectID}");
    }
 
    /// <summary>
@@ -126,8 +126,8 @@ public class VRLogger : MonoBehaviour
 
        Debug.Log($"[VRLogger] Session started: {sessionID}");
         // Helpful debug output showing where files will be written on device
-        Debug.Log($"[VRLogger] persistentDataPath: {Application.persistentDataPath}");
-        Debug.Log($"[VRLogger] Export folder path: {Path.Combine(Application.persistentDataPath, exportFolder, sessionID)}");
+     //   Debug.Log($"[VRLogger] persistentDataPath: {Application.persistentDataPath}");
+     //   Debug.Log($"[VRLogger] Export folder path: {Path.Combine(Application.persistentDataPath, exportFolder, sessionID)}");
    }
 
    /// <summary>

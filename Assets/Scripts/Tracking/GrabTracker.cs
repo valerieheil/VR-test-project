@@ -90,7 +90,7 @@ public class GrabTracker : MonoBehaviour
             extra: $"grabCount={_grabCount},isTrigger={isTriggerObject}"
         ));
 
-        Debug.Log($"Grabbed {objectLabel}");
+      //  Debug.Log($"Grabbed {objectLabel}");
     }
 
     private void LogRelease()
@@ -112,7 +112,7 @@ public class GrabTracker : MonoBehaviour
             extra: $"holdDuration={holdDuration:F3}s,isTrigger={isTriggerObject}"
         ));
 
-        Debug.Log($"Released {objectLabel}");
+      //  Debug.Log($"Released {objectLabel}");
     }
 
     public int GrabCount => _grabCount;

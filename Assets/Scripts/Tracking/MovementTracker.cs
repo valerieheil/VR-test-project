@@ -58,7 +58,7 @@ public class MovementTracker : MonoBehaviour
     private void Update()
     {
     // Grip-Input erkannt?
-        Debug.Log("grip input: "+ OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger));
+        //Debug.Log("grip input: "+ OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger));
 
 
         if (cameraTransform == null) return;
