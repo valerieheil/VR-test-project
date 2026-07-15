@@ -28,6 +28,8 @@ The project is intended as a foundation for scientific research and therapeutic 
   * Object interactions
   * Movement within the environment
 * Foundation for subsequent behavioral data analysis
+* Export tracking data as CSV or JSON
+* Event logging system
 
 ## Technologies Used
 
@@ -62,11 +64,9 @@ These data can later be used to analyze user behavior during exposure therapy.
 
 ## Planned Extensions
 
-* Export tracking data as CSV or JSON
 * Heatmap visualization of gaze and movement data
 * Multiple exposure scenarios
 * Configurable number and placement of beer bottles
-* Event logging system
 * Optional integration of physiological measurements
 
 ## Disclaimer
