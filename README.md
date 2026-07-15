@@ -33,7 +33,6 @@ The project is intended as a foundation for scientific research and therapeutic 
 
 * Unity
 * Meta XR SDK
-* OpenXR
 * Meta Interaction SDK
 * C#
 
