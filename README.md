@@ -1,92 +1,74 @@
 # VR Exposure Therapy
 
-## Projektbeschreibung
+## Project Description
 
-Dieses Projekt dient als Grundlage für eine Virtual-Reality-Expositionstherapie. Ziel ist es, Nutzern kontrolliert Reize in einer virtuellen Umgebung bereitzustellen und gleichzeitig deren Verhalten während der Exposition zu erfassen.
+This project provides the foundation for a virtual reality exposure therapy application. Its purpose is to present users with controlled alcohol-related stimuli in a virtual environment while simultaneously recording their behavior during the exposure session.
 
-Als Expositionsobjekte werden Bierflaschen in einer virtuellen Szene platziert. Während sich der Nutzer in der VR-Umgebung bewegt, werden verschiedene Interaktions- und Bewegungsdaten aufgezeichnet, um das Verhalten während der Therapie analysieren zu können.
+Beer bottles are used as exposure stimuli and are distributed throughout the virtual scene. As users navigate the VR environment, various interaction and movement data are collected to analyze their behavior during the therapy session.
 
-## Zielsetzung
+## Objectives
 
-Das Projekt soll eine Grundlage für wissenschaftliche Untersuchungen und therapeutische Anwendungen im Bereich der VR-gestützten Exposition bieten. Dabei stehen insbesondere folgende Fragestellungen im Fokus:
+The project is intended as a foundation for scientific research and therapeutic applications in VR-based exposure therapy. The primary areas of interest include:
 
-- Aufmerksamkeit gegenüber alkoholbezogenen Reizen
-- Interaktionsverhalten mit den virtuellen Objekten
-- Bewegungsmuster innerhalb der Szene
-- Blickverhalten (Gaze Tracking)
+* Attention toward alcohol-related cues
+* Interaction behavior with virtual objects
+* Movement patterns within the virtual environment
+* Gaze behavior (eye tracking)
 
-## Funktionen
+## Features
 
-- Virtuelle Szene mit verteilten Bierflaschen
-- Physikalisch interagierbare Objekte
-- Greifen und Loslassen der Flaschen mittels VR-Controllern
-- Tracking verschiedener Nutzerdaten:
-  - Headset-Position und -Rotation
-  - Controller-Positionen
-  - Gaze Tracking
-  - Interaktionen mit Objekten
-  - Bewegungsdaten innerhalb der Szene
-- Grundlage für spätere Datenauswertung
+* Virtual scene containing multiple beer bottles
+* Physics-based interactive objects
+* Grabbing and releasing bottles using VR controllers
+* Tracking of various user-related data, including:
 
-## Verwendete Technologien
+  * Headset position and rotation
+  * Controller positions
+  * Gaze tracking
+  * Object interactions
+  * Movement within the environment
+* Foundation for subsequent behavioral data analysis
 
-- Unity
-- Meta XR SDK
-- OpenXR
-- Oculus/Meta Interaction SDK
-- C#
+## Technologies Used
 
-## Projektstruktur
+* Unity
+* Meta XR SDK
+* Meta Interaction SDK
+* C#
 
-```
-Assets/
-│
-├── Interaction/
-│   ├── Grabbable Objects
-│   ├── Tracking
-│   └── Scripts
-│
-├── Scenes/
-│   └── ExposureScene
-│
-├── Prefabs/
-│
-└── Materials/
-```
+## Data Tracking
 
-## Tracking
+During the application, the following data can be recorded:
 
-Während der Anwendung können unter anderem folgende Daten erfasst werden:
+* Head position
+* Head rotation
+* Gaze direction (eye tracking)
+* Controller positions
+* Controller rotations
+* Object interactions
+* Movement paths
+* Time spent at specific locations
+* Timestamp of each interaction event
 
-- Kopfposition
-- Kopfrotation
-- Blickrichtung (Gaze)
-- Controllerpositionen
-- Controllerrotationen
-- Objektinteraktionen
-- Bewegungswege
-- Aufenthaltsdauer an bestimmten Positionen
-- Zeitpunkt einzelner Interaktionen
+These data can later be used to analyze user behavior during exposure therapy.
 
-Diese Daten können zur späteren Analyse des Nutzerverhaltens verwendet werden.
+## Usage
 
-## Anwendung
+1. Open the project in Unity.
+2. Ensure that the Meta XR SDK is installed.
+3. Connect the Meta Quest via Quest Link or deploy the application directly to the headset.
+4. Open the `ExposureScene`.
+5. Run or build the application.
 
-1. Projekt in Unity öffnen.
-2. Sicherstellen, dass das Meta XR SDK installiert ist.
-3. Quest per Link oder Build auf dem Headset starten.
-4. Szene `ExposureScene` laden.
-5. Anwendung starten.
+## Planned Extensions
 
-## Geplante Erweiterungen
+* Export tracking data as CSV or JSON
+* Heatmap visualization of gaze and movement data
+* Multiple exposure scenarios
+* Configurable number and placement of beer bottles
+* Event logging system
+* Optional integration of physiological measurements
 
-- Speicherung der Trackingdaten als CSV oder JSON
-- Heatmaps der Blick- und Bewegungsdaten
-- Verschiedene Expositionsszenarien
-- Anpassbare Anzahl und Position der Bierflaschen
-- Ereignisprotokollierung (Events)
-- Integration physiologischer Messdaten (optional)
+## Disclaimer
 
-## Hinweis
-
-Dieses Projekt dient ausschließlich Forschungs- und Entwicklungszwecken im Bereich der Virtual-Reality-gestützten Expositionstherapie. Es stellt keine medizinische Behandlung oder ein zertifiziertes Therapiesystem dar.
+This project is intended solely for research and development purposes in the field of virtual reality–based exposure therapy. It is **not** a medical treatment or a certified therapeutic system.
