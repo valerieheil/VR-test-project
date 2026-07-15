@@ -36,24 +36,6 @@ The project is intended as a foundation for scientific research and therapeutic 
 * Meta Interaction SDK
 * C#
 
-## Project Structure
-
-```text
-Assets/
-│
-├── Interaction/
-│   ├── Grabbable Objects
-│   ├── Tracking
-│   └── Scripts
-│
-├── Scenes/
-│   └── ExposureScene
-│
-├── Prefabs/
-│
-└── Materials/
-```
-
 ## Data Tracking
 
 During the application, the following data can be recorded:
